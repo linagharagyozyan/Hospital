@@ -24,28 +24,28 @@ class Hospital:
         temp.next = new_data
 
     def getHospitalInfo(self):
-        print("Welcome to Hospital", self.name, "\n""Contact details:""\n""---------","\n""Address:",self.address,"\n""Email: ",\
-              self.email,"\n""Phone: ",self.phone)
+        print "Welcome to Hospital", self.name, "\n""Contact details:""\n""---------","\n""Address:",self.address,"\n""Email: ",\
+              self.email,"\n""Phone: ",self.phone
 
     def getJobsInfo(self, data):
         temp = self.__head
         while temp.next is not None and temp != data:
             temp = temp.next
-        print("\n",data.name)
+        print "\n",data.name
 
     def getDoctorInfo(self, data):
         temp = self.__head
         while temp.next is not None and temp != data:
             temp = temp.next
-        print("\n""Name: ", data.name, "\n""Surname: ", data.surname, "\n""Email: ", data.email, \
-              "\n""Speciality: ", data.speciality, "\n""Phone: ", data.phone)
+        print "\n""Name: ", data.name, "\n""Surname: ", data.surname, "\n""Email: ", data.email, \
+              "\n""Speciality: ", data.speciality, "\n""Phone: ", data.phone
 
     def getPatientInfo(self, data):
         temp = self.__head
         while temp.next is not None and temp != data:
             temp = temp.next
-        print("\n""Patient info", "\n", "---------", "\n", "Name: ", data.name, "\n", "Surname: ", data.surname, "\n", "Email: ", \
-              data.email, "\n", "Disease: ", data.disease, "\n", "Status: ", data.status, "\n", "Phone: ", data.phone, "\n", "---------")
+        print "\n""Patient info", "\n", "---------", "\n", "Name: ", data.name, "\n", "Surname: ", data.surname, "\n", "Email: ", \
+              data.email, "\n", "Disease: ", data.disease, "\n", "Status: ", data.status, "\n", "Phone: ", data.phone, "\n", "---------"
 
 class Job:
     def __init__(self, name):
@@ -98,6 +98,7 @@ def main():
     hospital.getDoctorInfo(doctor2)
 
     #aaaa
+    #bbbb
 
 if __name__ == "__main__":
     main()
