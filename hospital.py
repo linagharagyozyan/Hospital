@@ -78,15 +78,18 @@ def main():
     hospital = Hospital("Nairi", "Paronyan St., 21 Building", "+374-10-537500")
 
     job1 = Job("Cardiologist")
+    hospital.setJobHead(job1)
     job2 = Job("Therapist")
-    hospital.setHead(job1)
+
 
     doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
+    hospital.setDoctorHead(doctor1)
     doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
     hospital.insert(job1, doctor1)
     hospital.insert(job1, doctor2)
 
     patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
+    hospital.setPatientHead(patient1)
     patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
 
     hospital.insert(doctor1, patient1)
@@ -103,8 +106,7 @@ def main():
     hospital.getPatientInfo(patient2)
     hospital.getDoctorInfo(doctor2)
 
-    #aaaa
-    #bbbb
+
 
 if __name__ == "__main__":
     main()
