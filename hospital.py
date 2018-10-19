@@ -13,8 +13,14 @@ class Hospital:
         self.phone = phone
         self.email = "{}{}{}{}".format("hospital","_",self.name.lower(),"@gmail.com")
 
-    def setHead(self, new_data):
-        self.__head = HospitalProperties(new_data)
+    def setJobHead(self, new_data):
+        self.__Jobhead = HospitalProperties(new_data)
+
+    def setDoctorHead(self, new_data):
+        self.__Doctorhead = HospitalProperties(new_data)
+
+    def setPatientHead(self, new_data):
+        self.__Patienthead = HospitalProperties(new_data)
 
     def insert(self, data, new_data):
         temp = self.__head
@@ -28,20 +34,20 @@ class Hospital:
               self.email,"\n""Phone: ",self.phone
 
     def getJobsInfo(self, data):
-        temp = self.__head
+        temp = self.__Jobhead
         while temp.next is not None and temp != data:
             temp = temp.next
         print "\n",data.name
 
     def getDoctorInfo(self, data):
-        temp = self.__head
+        temp = self.__Doctorhead
         while temp.next is not None and temp != data:
             temp = temp.next
         print "\n""Name: ", data.name, "\n""Surname: ", data.surname, "\n""Email: ", data.email, \
               "\n""Speciality: ", data.speciality, "\n""Phone: ", data.phone
 
     def getPatientInfo(self, data):
-        temp = self.__head
+        temp = self.__Patienthead
         while temp.next is not None and temp != data:
             temp = temp.next
         print "\n""Patient info", "\n", "---------", "\n", "Name: ", data.name, "\n", "Surname: ", data.surname, "\n", "Email: ", \
