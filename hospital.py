@@ -97,17 +97,17 @@ def main():
     job1 = Job("Cardiologist")
     hospital.setJobHead(job1)
     job2 = Job("Therapist")
-    # append job2
+    hospital.appendJob(job2)
 
     doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
     hospital.setDoctorHead(doctor1)
     doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
-    # append doctor2
+    hospital.appendDoctor(doctor2)
 
     patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
     hospital.setPatientHead(patient1)
     patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
-    # append patient2
+    hospital.appendPatient(patient2)
 
     hospital.getHospitalInfo()
 
