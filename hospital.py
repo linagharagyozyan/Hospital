@@ -147,21 +147,22 @@ def main():
     job2 = Job("Therapist")
     hospital.appendJob(job2)
     job3 = Job("Surgeon")
-    #insert job1, job3
+    hospital.insertJob(job1,job3)
 
     doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
     hospital.setDoctorHead(doctor1)
     doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
     hospital.appendDoctor(doctor2)
     doctor3 = Doctor("Petros", "Karapetyan","Surgeon","+37498288888")
-    #insert doctor1, doctor3
+    hospital.insertDoctor(doctor1,doctor3)
+
 
     patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
     hospital.setPatientHead(patient1)
     patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
     hospital.appendPatient(patient2)
     patient3 = Patient("Poghos", "Kaputikyan", "Broken toe", "In progress", "+374394822")
-    #insert patient1, patient3
+    hospital.insertPatient(patient1,patient3)
 
     hospital.getHospitalInfo()
 
