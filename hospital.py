@@ -22,12 +22,29 @@ class Hospital:
     def setPatientHead(self, new_data):
         self.__Patienthead = HospitalProperties(new_data)
 
-    def insert(self, data, new_data):
-        temp = self.__head
-        while temp.next is not None and temp != data:
+    def appendJob(self, new_data):
+        temp = self.__Jobhead
+        while temp.next is not None:
             temp = temp.next
-        new_data.next = temp.next
-        temp.next = new_data
+
+        newJob = HospitalProperties(new_data)
+        temp.next = newJob
+
+    def appendDoctor(self, new_data):
+        temp = self.__Doctorhead
+        while temp.next is not None:
+            temp = temp.next
+
+        newDoctor = HospitalProperties(new_data)
+        temp.next = newDoctor
+
+    def appendPatient(self, new_data):
+        temp = self.__Patienthead
+        while temp.next is not None:
+            temp = temp.next
+
+        newPatient = HospitalProperties(new_data)
+        temp.next = newPatient
 
     def getHospitalInfo(self):
         print "Welcome to Hospital", self.name, "\n""Contact details:""\n""---------","\n""Address:",self.address,"\n""Email: ",\
@@ -80,26 +97,19 @@ def main():
     job1 = Job("Cardiologist")
     hospital.setJobHead(job1)
     job2 = Job("Therapist")
-
+    # append job2
 
     doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
     hospital.setDoctorHead(doctor1)
     doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
-    hospital.insert(job1, doctor1)
-    hospital.insert(job1, doctor2)
+    # append doctor2
 
     patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
     hospital.setPatientHead(patient1)
     patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
-
-    hospital.insert(doctor1, patient1)
-    hospital.insert(doctor1, patient2)
-
-    hospital.insert(hospital, job2)
+    # append patient2
 
     hospital.getHospitalInfo()
-
-    # hospital.getJobsInfo(job1)
 
     hospital.getDoctorInfo(doctor1)
     hospital.getPatientInfo(patient1)
