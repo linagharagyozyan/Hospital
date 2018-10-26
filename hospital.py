@@ -1,7 +1,27 @@
-class HospitalProperties:
-    def __init__(self, data=None):
-        self.data = data
+class Node(object):
+    def __init__(self):
         self.next = None
+
+class Job(Node):
+    def __init__(self, name):
+        self.name = name
+
+class Doctor(Node):
+    def __init__(self,name,surname,speciality,phone):
+        self.name = name
+        self.surname= surname
+        self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
+        self.speciality = speciality
+        self.phone = phone
+
+class Patient(Node):
+    def __init__(self,name,surname,disease,status,phone):
+        self.name = name
+        self.surname = surname
+        self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
+        self.disease = disease
+        self.status = status
+        self.phone = phone
 
 class Hospital:
     def __init__(self, name, address, phone):
@@ -13,49 +33,40 @@ class Hospital:
         self.phone = phone
         self.email = "{}{}{}{}".format("hospital","_",self.name.lower(),"@gmail.com")
 
-    def setJobHead(self, new_data):
-        self.__Jobhead = HospitalProperties(new_data)
-
-    def setDoctorHead(self, new_data):
-        self.__Doctorhead = HospitalProperties(new_data)
-
-    def setPatientHead(self, new_data):
-        self.__Patienthead = HospitalProperties(new_data)
-
     def addJob(self, new_job):
         job = Job(new_job)
         if self.__Jobhead == None:
-            self.__Jobhead = HospitalProperties(job)
+            self.__Jobhead = job
         else:
             temp = self.__Jobhead
             while temp.next is not None:
                 temp = temp.next
 
-            newJob = HospitalProperties(job)
+            newJob = job
             temp.next = newJob
 
     def addDoctor(self, name, surname, specialty, phone):
         doctor = Doctor(name, surname, specialty, phone)
         if self.__Doctorhead == None:
-            self.__Doctorhead = HospitalProperties(doctor)
+            self.__Doctorhead = doctor
         else:
             temp = self.__Doctorhead
             while temp.next is not None:
                 temp = temp.next
 
-            newDoctor = HospitalProperties(doctor)
+            newDoctor = doctor
             temp.next = newDoctor
 
     def addPatient(self, name, surname, disease, status, phone):
         patient = Patient(name, surname, disease, status, phone)
         if self.__Patienthead == None:
-            self.__Patienthead = HospitalProperties(patient)
+            self.__Patienthead = patient
         else:
             temp = self.__Patienthead
             while temp.next is not None:
                 temp = temp.next
 
-            newPatient = HospitalProperties(patient)
+            newPatient = patient
             temp.next = newPatient
 
     def deleteJob(self, job):
@@ -102,27 +113,6 @@ class Hospital:
             temp = temp.next
         print "\n""Patient info", "\n", "---------", "\n", "Name: ", data.name, "\n", "Surname: ", data.surname, "\n", "Email: ", \
               data.email, "\n", "Disease: ", data.disease, "\n", "Status: ", data.status, "\n", "Phone: ", data.phone, "\n", "---------"
-
-class Job:
-    def __init__(self, name):
-        self.name = name
-
-class Doctor:
-    def __init__(self,name,surname,speciality,phone):
-        self.name = name
-        self.surname= surname
-        self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
-        self.speciality = speciality
-        self.phone = phone
-
-class Patient:
-    def __init__(self,name,surname,disease,status,phone):
-        self.name = name
-        self.surname = surname
-        self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
-        self.disease = disease
-        self.status = status
-        self.phone = phone
 
 def main():
     hospital = Hospital("Nairi", "Paronyan St., 21 Building", "+374-10-537500")
