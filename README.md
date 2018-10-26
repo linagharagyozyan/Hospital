@@ -10,6 +10,8 @@ Marianna - Class Doctor, Class Patient
 
 Varsik - Class job, Main, Documentation 
 
+Avet - Insert functions, Delete functions
+
 
 General information about Hospital (code)
 
