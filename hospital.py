@@ -4,10 +4,12 @@ class Node(object):
 
 class Job(Node):
     def __init__(self, name):
+        super(Job, self).__init__()
         self.name = name
 
 class Doctor(Node):
-    def __init__(self,name,surname,speciality,phone):
+    def __init__(self, name, surname, speciality, phone):
+        super(Doctor, self).__init__()
         self.name = name
         self.surname= surname
         self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
@@ -15,7 +17,8 @@ class Doctor(Node):
         self.phone = phone
 
 class Patient(Node):
-    def __init__(self,name,surname,disease,status,phone):
+    def __init__(self, name, surname, disease, status, phone):
+        super(Patient, self).__init__()
         self.name = name
         self.surname = surname
         self.email = "{}{}{}{}".format(self.name.lower(),"_",self.surname.lower(),"@gmail.com")
@@ -70,81 +73,91 @@ class Hospital:
             temp.next = newPatient
 
     def deleteJob(self, job):
-        temp = self.__Jobhead
-        while temp.next is not None and temp.next != job:
-            temp = temp.next
+        if self.__Jobhead == None:
+            print "There are no jobs in the list!"
+        elif self.__Jobhead.name == job:
+            self.__Jobhead = self.__Jobhead.next
+        else:
+            temp = self.__Jobhead
+            while temp.next is not None and temp.next.name != job:
+                temp = temp.next
+            if temp.name == job:
+                temp.next = temp.next.next
+            else:
+                print "There is no such job in our list!"
 
-        temp.next = temp.next.next
+    def deleteDoctor(self, name, surname):
+        if self.__Doctorhead == None:
+            print "There are no doctors in the list!"
+        elif self.__Doctorhead.name == name and self.__Doctorhead.surname == surname:
+            self.__Doctorhead = self.__Doctorhead.next
+        else:
+            temp = self.__Doctorhead
+            while temp.next is not None and temp.next.name != name and temp.next.surname != surname:
+                temp = temp.next
+            if temp.name == name and temp.surname == surname:
+                temp.next = temp.next.next
+            else:
+                print "There is no such doctor in our list!"
 
-    def deleteDoctor(self, doctor):
-        temp = self.__Doctorhead
-        while temp.next is not None and temp.next != doctor:
-            temp = temp.next
-
-        temp.next = temp.next.next
-
-    def deletePatient(self, patient):
-        temp = self.__Patienthead
-        while temp.next is not None and temp.next != patient:
-            temp = temp.next
-
-        temp.next = temp.next.next
+    def deletePatient(self, name, surname):
+        if self.__Patienthead == None:
+            print "There are no patients in the list!"
+        elif self.__Patienthead.name == name and self.__Patienthead.surname == surname:
+            self.__Patienthead = self.__Patienthead.next
+        else:
+            temp = self.__Patienthead
+            while temp.next is not None and temp.next.name != name and temp.next.surname != surname:
+                temp = temp.next
+            if temp.name == name and temp.surname == surname:
+                temp.next = temp.next.next
+            else:
+                print "There is no such patient in our list!"
 
     def getHospitalInfo(self):
         print "Welcome to Hospital", self.name, "\n""Contact details:""\n""---------","\n""Address:",self.address,"\n""Email: ",\
               self.email,"\n""Phone: ",self.phone
 
-    def getJobsInfo(self, data):
-        temp = self.__Jobhead
-        while temp.next is not None and temp != data:
-            temp = temp.next
-        print "\n",data.name
-
-    def getDoctorInfo(self, data):
+    def getDoctorInfo(self, name, surname):
         temp = self.__Doctorhead
-        while temp.next is not None and temp != data:
+        while temp.next is not None and temp.name != name and temp.surname != surname:
             temp = temp.next
-        print "\n""Name: ", data.name, "\n""Surname: ", data.surname, "\n""Email: ", data.email, \
-              "\n""Speciality: ", data.speciality, "\n""Phone: ", data.phone
+        if temp.name == name and temp.surname == surname:
+            print "\n""Name: ", temp.name, "\n""Surname: ", temp.surname, "\n""Email: ", temp.email, \
+                  "\n""Speciality: ", temp.speciality, "\n""Phone: ", temp.phone, "\n", "---------"
+        else:
+            print "There is no such doctor in our list!"
 
-    def getPatientInfo(self, data):
+    def getPatientInfo(self, name, surname):
         temp = self.__Patienthead
-        while temp.next is not None and temp != data:
+        while temp.next is not None and temp.name != name and temp.surname != surname:
             temp = temp.next
-        print "\n""Patient info", "\n", "---------", "\n", "Name: ", data.name, "\n", "Surname: ", data.surname, "\n", "Email: ", \
-              data.email, "\n", "Disease: ", data.disease, "\n", "Status: ", data.status, "\n", "Phone: ", data.phone, "\n", "---------"
+        if temp.name == name and temp.surname == surname:
+            print "\n""Patient info", "\n", "---------", "\n", "Name: ", temp.name, "\n", "Surname: ", temp.surname, "\n", "Email: ", \
+                  temp.email, "\n", "Disease: ", temp.disease, "\n", "Status: ", temp.status, "\n", "Phone: ", temp.phone, "\n", "---------"
+        else:
+            print "There is no such patient in our list!"
 
 def main():
     hospital = Hospital("Nairi", "Paronyan St., 21 Building", "+374-10-537500")
-
-    job1 = Job("Cardiologist")
-    hospital.setJobHead(job1)
-    job2 = Job("Therapist")
-    hospital.appendJob(job2)
-    job3 = Job("Surgeon")
-
-
-    doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
-    hospital.setDoctorHead(doctor1)
-    doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
-    hospital.appendDoctor(doctor2)
-    doctor3 = Doctor("Petros", "Karapetyan","Surgeon","+37498288888")
-
-
-
-    patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
-    hospital.setPatientHead(patient1)
-    patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
-    hospital.appendPatient(patient2)
-    patient3 = Patient("Poghos", "Kaputikyan", "Broken toe", "In progress", "+374394822")
-
-
     hospital.getHospitalInfo()
 
-    hospital.getDoctorInfo(doctor1)
-    hospital.getPatientInfo(patient1)
-    hospital.getPatientInfo(patient2)
-    hospital.getDoctorInfo(doctor2)
+    hospital.addJob("Cardiologist")
+    hospital.addJob("Therapist")
+    hospital.addJob("Surgeon")
+
+    hospital.addDoctor("Armen","Kirakosyan","Cardiologist","+37477887788")
+    hospital.addDoctor("Karen","Petrosyan","Cardiologist","+37491070097")
+    hospital.addDoctor("Petros", "Karapetyan","Surgeon","+37498288888")
+
+    hospital.addPatient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
+    hospital.addPatient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
+    hospital.addPatient("Poghos", "Kaputikyan", "Broken toe", "In progress", "+374394822")
+
+    hospital.getDoctorInfo("Armen", "Kirakosyan")
+    hospital.getPatientInfo("Tigran","Khachatryan")
+    hospital.getPatientInfo("Gor","Nersisyan")
+    hospital.getDoctorInfo("Karen","Petrosyan")
 
 
 
