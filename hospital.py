@@ -22,56 +22,41 @@ class Hospital:
     def setPatientHead(self, new_data):
         self.__Patienthead = HospitalProperties(new_data)
 
-    def appendJob(self, new_data):
-        temp = self.__Jobhead
-        while temp.next is not None:
-            temp = temp.next
+    def addJob(self, new_job):
+        job = Job(new_job)
+        if self.__Jobhead == None:
+            self.__Jobhead = HospitalProperties(job)
+        else:
+            temp = self.__Jobhead
+            while temp.next is not None:
+                temp = temp.next
 
-        newJob = HospitalProperties(new_data)
-        temp.next = newJob
+            newJob = HospitalProperties(job)
+            temp.next = newJob
 
-    def appendDoctor(self, new_data):
-        temp = self.__Doctorhead
-        while temp.next is not None:
-            temp = temp.next
+    def addDoctor(self, name, surname, specialty, phone):
+        doctor = Doctor(name, surname, specialty, phone)
+        if self.__Doctorhead == None:
+            self.__Doctorhead = HospitalProperties(doctor)
+        else:
+            temp = self.__Doctorhead
+            while temp.next is not None:
+                temp = temp.next
 
-        newDoctor = HospitalProperties(new_data)
-        temp.next = newDoctor
+            newDoctor = HospitalProperties(doctor)
+            temp.next = newDoctor
 
-    def appendPatient(self, new_data):
-        temp = self.__Patienthead
-        while temp.next is not None:
-            temp = temp.next
+    def addPatient(self, name, surname, disease, status, phone):
+        patient = Patient(name, surname, disease, status, phone)
+        if self.__Patienthead == None:
+            self.__Patienthead = HospitalProperties(patient)
+        else:
+            temp = self.__Patienthead
+            while temp.next is not None:
+                temp = temp.next
 
-        newPatient = HospitalProperties(new_data)
-        temp.next = newPatient
-
-    def insertJob(self, job, new_job):
-        temp = self.__Jobhead
-        while temp.next is not None and temp.next != job:
-            temp = temp.next
-
-        newJob = HospitalProperties(new_job)
-        newJob.next = temp.next
-        temp.next = newJob
-
-    def insertDoctor(self, doctor, new_doctor):
-        temp = self.__Doctorhead
-        while temp.next is not None and temp.next != doctor:
-            temp = temp.next
-
-        newDoctor = HospitalProperties(new_doctor)
-        newDoctor.next = temp.next
-        temp.next = newDoctor
-
-    def insertPatient(self, patient, new_patient):
-        temp = self.__Patienthead
-        while temp.next is not None and temp.next != patient:
-            temp = temp.next
-
-        newPatient = HospitalProperties(new_patient)
-        newPatient.next = temp.next
-        temp.next = newPatient
+            newPatient = HospitalProperties(patient)
+            temp.next = newPatient
 
     def deleteJob(self, job):
         temp = self.__Jobhead
@@ -147,14 +132,14 @@ def main():
     job2 = Job("Therapist")
     hospital.appendJob(job2)
     job3 = Job("Surgeon")
-    hospital.insertJob(job1,job3)
+
 
     doctor1 = Doctor("Armen","Kirakosyan","Cardiologist","+37477887788")
     hospital.setDoctorHead(doctor1)
     doctor2 = Doctor("Karen","Petrosyan","Cardiologist","+37491070097")
     hospital.appendDoctor(doctor2)
     doctor3 = Doctor("Petros", "Karapetyan","Surgeon","+37498288888")
-    hospital.insertDoctor(doctor1,doctor3)
+
 
 
     patient1 = Patient("Tigran","Khachatryan","High blood pressure","In progress","+37477887799")
@@ -162,7 +147,7 @@ def main():
     patient2 = Patient("Gor","Nersisyan","Diabetes","In progress","+37495000000")
     hospital.appendPatient(patient2)
     patient3 = Patient("Poghos", "Kaputikyan", "Broken toe", "In progress", "+374394822")
-    hospital.insertPatient(patient1,patient3)
+
 
     hospital.getHospitalInfo()
 
